@@ -63,7 +63,7 @@ class Builder(ABC):
     def ass_topping(self) -> None: pass
 
     @abstractmethod
-    def get_pizza(self) -> Pizza: pass
+    def get_pizza(self) -> 'Pizza': pass
 
 
 class MargaritaPizzaBuilder(Builder):
@@ -87,7 +87,7 @@ class MargaritaPizzaBuilder(Builder):
             ]
         )
 
-    def get_pizza(self) -> Pizza:
+    def get_pizza(self) -> 'Pizza':
         return self.pizza
 
 
@@ -111,7 +111,7 @@ class SalamiPizzaBuilder(Builder):
             ]
         )
 
-    def get_pizza(self) -> Pizza:
+    def get_pizza(self) -> 'Pizza':
         return self.pizza
 
 
@@ -120,7 +120,7 @@ class Director:
     def __init__(self):
         self.builder = None
 
-    def set_builder(self, builder: Builder):
+    def set_builder(self, builder: 'Builder'):
         self.builder = builder
 
     def make_pizza(self):

@@ -58,39 +58,39 @@ class Product22(Product2):
 class Factory(ABC):
 
     @abstractmethod
-    def create_product1(self) -> Product1:
+    def create_product1(self) -> 'Product1':
         pass
 
     @abstractmethod
-    def create_product2(self) -> Product2:
+    def create_product2(self) -> 'Product2':
         pass
 
 
 class Factory1(Factory):
 
-    def create_product1(self) -> Product11:
+    def create_product1(self) -> 'Product11':
         return Product11()
 
-    def create_product2(self) -> Product12:
+    def create_product2(self) -> 'Product12':
         return Product12()
 
 
 class Factory2(Factory):
 
-    def create_product1(self) -> Product21:
+    def create_product1(self) -> 'Product21':
         return Product21()
 
-    def create_product2(self) -> Product22:
+    def create_product2(self) -> 'Product22':
         return Product12()
 
 
-def get_products(creator: Factory):
+def get_products(creator: 'Factory'):
     print(creator.create_product1().params)
     print(creator.create_product2().params)
 
 
-fc1: Factory1 = Factory1()
-fc2: Factory2 = Factory2()
+fc1: 'Factory1' = Factory1()
+fc2: 'Factory2' = Factory2()
 
 get_products(fc1)
 get_products(fc2)

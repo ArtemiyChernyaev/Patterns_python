@@ -29,21 +29,21 @@ class Factory(ABC):
 
 class FactoryOne(Factory):
 
-    def create(self) -> ProductOne:
+    def create(self) -> 'ProductOne':
         return ProductOne()
 
 
 class FactoryTwo(Factory):
 
-    def create(self) -> ProductTwo:
+    def create(self) -> 'ProductTwo':
         return ProductTwo()
 
 
-creator: FactoryOne = FactoryOne()
-pr1: ProductOne = creator.create()
+creator: 'FactoryOne' = FactoryOne()
+pr1: 'ProductOne' = creator.create()
 
-creator: FactoryTwo = FactoryTwo()
-pr2: ProductTwo = creator.create()
+creator: 'FactoryTwo' = FactoryTwo()
+pr2: 'ProductTwo' = creator.create()
 
 print(pr1.release())
 print(pr2.release())
