@@ -5,7 +5,7 @@ class ObjectBase(ABC):
 
     @abstractmethod
     def object_method(self):
-        pass
+        ...
 
 
 class Object(ObjectBase):
@@ -24,8 +24,9 @@ class ProxyObject(ObjectBase):
         self.object.object_method()
 
 
-o1: 'Object' = Object()
-o1.object_method()
+if __name__ == '__main__':
+    o1: Object = Object()
+    o1.object_method()
 
-o2: 'ProxyObject' = ProxyObject()
-o2.object_method()
+    o2: ProxyObject = ProxyObject()
+    o2.object_method()

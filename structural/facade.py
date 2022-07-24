@@ -22,9 +22,9 @@ class Builder:
 class BuildingProject:
 
     def __init__(self):
-        self.investing: 'Investor' = Investor()
-        self.giving: 'Vendor' = Vendor()
-        self.building: 'Builder' = Builder()
+        self.investing: Investor = Investor()
+        self.giving: Vendor = Vendor()
+        self.building: Builder = Builder()
 
     def realize(self, *, n_invest: int, n_give: int, n_build: int):
         [self.investing.invest() for _ in range(n_invest)]
@@ -32,5 +32,6 @@ class BuildingProject:
         [self.building.build() for _ in range(n_build)]
 
 
-building_project: 'BuildingProject' = BuildingProject()
-building_project.realize(n_invest=1, n_give=2, n_build=3)
+if __name__ == '__main__':
+    building_project: BuildingProject = BuildingProject()
+    building_project.realize(n_invest=1, n_give=2, n_build=3)

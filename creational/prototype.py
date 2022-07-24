@@ -9,13 +9,14 @@ class Class:
         return Class(self)
 
 
-obj1 = Class()
+if __name__ == '__main__':
+    obj1 = Class()
 
-obj1.attr1 = 10
-obj1.attr2 = 20
+    obj1.attr1 = 10
+    obj1.attr2 = 20
 
-obj2 = obj1.clone()
-obj2.attr1 = 666
+    obj2 = obj1.clone()
+    obj2.attr1 = 666
 
-print(obj1.__dict__)
-print(obj2.__dict__)
+    print(obj1.__dict__)
+    print(obj2.__dict__)

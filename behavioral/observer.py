@@ -28,7 +28,7 @@ class Observer(ABC):
 
     @abstractmethod
     def update(self, order_id: int):
-        pass
+        ...
 
 
 class Subject(ABC):
@@ -103,17 +103,18 @@ class Client(Observer):
         self.__barista.take_order(self.order)
 
 
-names = ['Anna', 'Lera',
-         'Masha', 'Dasha', 'Vika']
-barista = Barista()
-clients = [Client(name, barista) for name in names]
+if __name__ == '__main__':
+    names = ['Anna', 'Lera',
+             'Masha', 'Dasha', 'Vika']
+    barista = Barista()
+    clients = [Client(name, barista) for name in names]
 
-for client in clients:
-    print("-"*30)
-    client.create_order()
+    for client in clients:
+        print("-"*30)
+        client.create_order()
 
-print("-" * 4 + "The barista starts to fulfill orders" + 4 * "-")
+    print("-" * 4 + "The barista starts to fulfill orders" + 4 * "-")
 
-for _ in range(6):
-    print("-"*30)
-    barista.processing_order()
+    for _ in range(6):
+        print("-"*30)
+        barista.processing_order()

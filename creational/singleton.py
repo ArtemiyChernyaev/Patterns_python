@@ -24,13 +24,14 @@ class SingletonClassTwo(SingletonBaseClass):
         return super().__new__(cls)
 
 
-obj11 = SingletonClassOne()
-obj12 = SingletonClassOne()
+if __name__ == '__main__':
+    obj11 = SingletonClassOne()
+    obj12 = SingletonClassOne()
 
-obj21 = SingletonClassTwo()
-obj22 = SingletonClassTwo()
+    obj21 = SingletonClassTwo()
+    obj22 = SingletonClassTwo()
 
-print(f'id obj11 {id(obj11)}')
-print(f'id obj12 {id(obj12)}')
-print(f'id obj21 {id(obj21)}')
-print(f'id obj22 {id(obj22)}')
+    print(f'id obj11 {id(obj11)}')
+    print(f'id obj12 {id(obj12)}')
+    print(f'id obj21 {id(obj21)}')
+    print(f'id obj22 {id(obj22)}')

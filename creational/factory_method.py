@@ -5,7 +5,7 @@ class Product(ABC):
     
     @abstractmethod
     def release(self):
-        pass
+        ...
 
 
 class ProductOne(Product):
@@ -24,26 +24,27 @@ class Factory(ABC):
 
     @abstractmethod
     def create(self):
-        pass
+        ...
 
 
 class FactoryOne(Factory):
 
-    def create(self) -> 'ProductOne':
+    def create(self) -> ProductOne:
         return ProductOne()
 
 
 class FactoryTwo(Factory):
 
-    def create(self) -> 'ProductTwo':
+    def create(self) -> ProductTwo:
         return ProductTwo()
 
 
-creator: 'FactoryOne' = FactoryOne()
-pr1: 'ProductOne' = creator.create()
+if __name__ == '__main__':
+    creator: FactoryOne = FactoryOne()
+    pr1: ProductOne = creator.create()
 
-creator: 'FactoryTwo' = FactoryTwo()
-pr2: 'ProductTwo' = creator.create()
+    creator: FactoryTwo = FactoryTwo()
+    pr2: ProductTwo = creator.create()
 
-print(pr1.release())
-print(pr2.release())
+    print(pr1.release())
+    print(pr2.release())

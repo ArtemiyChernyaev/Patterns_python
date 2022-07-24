@@ -81,27 +81,28 @@ def add_specialist_database(
     flyweight.process(Unique(name, passport))
 
 
-shared_list: List[Shared] = [
-                            Shared('Microsoft', 'CEO'),
-                            Shared('Google', 'Anroid-developer'),
-                            Shared('Google', 'IOS-developer'),
-                            Shared('Apple', 'Web-developer')]
+if __name__ == '__main__':
+    shared_list: List[Shared] = [
+                                Shared('Microsoft', 'CEO'),
+                                Shared('Google', 'Android-developer'),
+                                Shared('Google', 'IOS-developer'),
+                                Shared('Apple', 'Web-developer')]
 
-factory = FlyweightFactory(shared_list)
-factory.list_flyweights()
+    factory = FlyweightFactory(shared_list)
+    factory.list_flyweights()
 
-add_specialist_database(
-                        factory,
-                        'Google',
-                        'Web-developer',
-                        'John',
-                        'AM-5132654')
+    add_specialist_database(
+                            factory,
+                            'Google',
+                            'Web-developer',
+                            'John',
+                            'AM-5132654')
 
-add_specialist_database(
-                        factory,
-                        'Apple',
-                        'CEO',
-                        'Alex',
-                        'DM-5654774')
+    add_specialist_database(
+                            factory,
+                            'Apple',
+                            'CEO',
+                            'Alex',
+                            'DM-5654774')
 
-factory.list_flyweights()
+    factory.list_flyweights()

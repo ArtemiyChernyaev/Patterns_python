@@ -5,7 +5,7 @@ class IScale(ABC):
 
     @abstractmethod
     def weight(self) -> float:
-        pass
+        ...
 
 
 class RussianScales(IScale):
@@ -30,7 +30,7 @@ class BritishScales(IScale):
 
 class AdapterForBritishScales(IScale):
 
-    def __init__(self, british_scales: 'BritishScales'):
+    def __init__(self, british_scales: BritishScales):
         self.__british_scales = british_scales
 
     @property
@@ -38,11 +38,12 @@ class AdapterForBritishScales(IScale):
         return self.__british_scales.weight * 0.453
 
 
-kg: float = 55
-lb: float = 55
+if __name__ == '__main__':
+    kg: float = 55
+    lb: float = 55
 
-rScales = RussianScales(kg)
-bScales = AdapterForBritishScales(BritishScales(lb))
+    rScales = RussianScales(kg)
+    bScales = AdapterForBritishScales(BritishScales(lb))
 
-print(rScales.weight)
-print(bScales.weight)
+    print(rScales.weight)
+    print(bScales.weight)

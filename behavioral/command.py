@@ -6,10 +6,11 @@ class Command(ABC):
 
     @abstractmethod
     def execute(self) -> None:
-        pass
+        ...
 
 
 class Assistant:
+
     def prepare_pizza_dough(self):
         print('Assistant prepares pizza dough')
 
@@ -21,6 +22,7 @@ class Assistant:
 
 
 class Oven:
+
     def prepare_oven(self):
         print('The oven is heating up')
 
@@ -29,6 +31,7 @@ class Oven:
 
 
 class Chief:
+
     def make_pizza_base(self):
         print('Chef rolls out the pizza base')
 
@@ -140,19 +143,20 @@ class Pizzeria:
         self.history.clear()
 
 
-chief = Chief()
-assistant = Assistant()
-stove = Oven()
-pizzeria = Pizzeria()
+if __name__ == '__main__':
+    chief = Chief()
+    assistant = Assistant()
+    stove = Oven()
+    pizzeria = Pizzeria()
 
-pizzeria.add_command(PrepareDoughCommand(assistant))
-pizzeria.add_command(MakePizzaBaseCommand(chief))
-pizzeria.add_command(PrepareSauceCommand(assistant))
-pizzeria.add_command(AppliedSauceCommand(chief))
-pizzeria.add_command(PrepareOvenCommand(stove))
-pizzeria.add_command(PrepareToppingCommand(assistant))
-pizzeria.add_command(AddToppingCommand(chief))
-pizzeria.add_command(CookingPizzaCommand(stove))
-pizzeria.add_command(BonAppetitCommand(chief))
+    pizzeria.add_command(PrepareDoughCommand(assistant))
+    pizzeria.add_command(MakePizzaBaseCommand(chief))
+    pizzeria.add_command(PrepareSauceCommand(assistant))
+    pizzeria.add_command(AppliedSauceCommand(chief))
+    pizzeria.add_command(PrepareOvenCommand(stove))
+    pizzeria.add_command(PrepareToppingCommand(assistant))
+    pizzeria.add_command(AddToppingCommand(chief))
+    pizzeria.add_command(CookingPizzaCommand(stove))
+    pizzeria.add_command(BonAppetitCommand(chief))
 
-pizzeria.cook()
+    pizzeria.cook()

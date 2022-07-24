@@ -5,11 +5,11 @@ class Worker(ABC):
 
     @abstractmethod
     def set_next_worker(self, worker: 'Worker') -> 'Worker':
-        pass
+        ...
 
     @abstractmethod
     def execute(self, command: str) -> str:
-        pass
+        ...
 
 
 class Laborer(Worker):
@@ -62,14 +62,15 @@ def give_command(worker: Worker, command: str):
         print(string)
 
 
-designer = Designer()
-carpenters = Carpenter()
-finishingWorker = FinishingWorker()
+if __name__ == '__main__':
+    designer = Designer()
+    carpenters = Carpenter()
+    finishingWorker = FinishingWorker()
 
-designer.set_next_worker(carpenters).set_next_worker(finishingWorker)
+    designer.set_next_worker(carpenters).set_next_worker(finishingWorker)
 
-give_command(designer, 'Design a house')
-give_command(designer, 'Laying bricks')
-give_command(designer, 'Glue wallpaper')
+    give_command(designer, 'Design a house')
+    give_command(designer, 'Laying bricks')
+    give_command(designer, 'Glue wallpaper')
 
-give_command(designer, 'Сonduct wires')
+    give_command(designer, 'Сonduct wires')

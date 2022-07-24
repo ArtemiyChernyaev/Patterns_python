@@ -3,6 +3,7 @@ from enum import Enum
 
 
 class ChiefMood(Enum):
+
     GOOD = 1
     BAD = 2
     BETTER_STAY_AWAY = 3
@@ -12,11 +13,11 @@ class Strategy(ABC):
 
     @abstractmethod
     def check_mood_chief(self, mood: ChiefMood) -> bool:
-        pass
+        ...
 
     @abstractmethod
     def order_processing(self, money: int) -> str:
-        pass
+        ...
 
 
 class GoodStrategy(Strategy):

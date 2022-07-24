@@ -5,7 +5,7 @@ class IProcessor(ABC):
 
     @abstractmethod
     def process(self):
-        pass
+        ...
 
 
 class Transmitter(IProcessor):
@@ -19,17 +19,17 @@ class Transmitter(IProcessor):
 
 class Shell(IProcessor):
 
-    def __init__(self, pr: 'IProcessor'):
+    def __init__(self, pr: IProcessor):
         self._processor = pr
 
     @abstractmethod
     def process(self):
-        pass
+        ...
 
 
 class HammingCoder(Shell):
 
-    def __init__(self, pr: 'IProcessor'):
+    def __init__(self, pr: IProcessor):
         super().__init__(pr)
 
     def process(self):
@@ -39,7 +39,7 @@ class HammingCoder(Shell):
 
 class Encryptor(Shell):
 
-    def __init__(self, pr: 'IProcessor'):
+    def __init__(self, pr: IProcessor):
         super().__init__(pr)
 
     def process(self):
@@ -47,14 +47,15 @@ class Encryptor(Shell):
         self._processor.process()
 
 
-transmitter: 'Transmitter' = Transmitter('12345')
-transmitter.process()
-print()
+if __name__ == '__main__':
+    transmitter: Transmitter = Transmitter('12345')
+    transmitter.process()
+    print()
 
-hamming_coder: 'HammingCoder' = HammingCoder(transmitter)
-hamming_coder.process()
-print()
+    hamming_coder: HammingCoder = HammingCoder(transmitter)
+    hamming_coder.process()
+    print()
 
-encryptor: 'Shell' = Encryptor(hamming_coder)
-encryptor.process()
+    encryptor: Shell = Encryptor(hamming_coder)
+    encryptor.process()
 

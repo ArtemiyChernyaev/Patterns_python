@@ -5,7 +5,7 @@ class DataReader(ABC):
 
     @abstractmethod
     def read(self):
-        pass
+        ...
 
 
 class FileReader(DataReader):
@@ -22,20 +22,20 @@ class DatabaseReader(DataReader):
 
 class Sender(ABC):
 
-    def __init__(self, data_reader: 'DataReader'):
-        self.reader: 'DataReader' = data_reader
+    def __init__(self, data_reader: DataReader):
+        self.reader: DataReader = data_reader
 
-    def set_data_reader(self, data_reader: 'DataReader'):
-        self.reader: 'DataReader' = data_reader
+    def set_data_reader(self, data_reader: DataReader):
+        self.reader: DataReader = data_reader
 
     @abstractmethod
     def send(self):
-        pass
+        ...
 
 
 class EmailSender(Sender):
 
-    def __init__(self, data_reader: 'DataReader'):
+    def __init__(self, data_reader: DataReader):
         super().__init__(data_reader)
 
     def send(self):
@@ -45,7 +45,7 @@ class EmailSender(Sender):
 
 class TgBotSender(Sender):
 
-    def __init__(self, data_reader: 'DataReader'):
+    def __init__(self, data_reader: DataReader):
         super().__init__(data_reader)
 
     def send(self):
@@ -53,11 +53,12 @@ class TgBotSender(Sender):
         print('Send via TgBot')
 
 
-sender: 'Sender' = EmailSender(DatabaseReader())
-sender.send()
+if __name__ == '__main__':
+    sender: Sender = EmailSender(DatabaseReader())
+    sender.send()
 
-sender.set_data_reader(FileReader())
-sender.send()
+    sender.set_data_reader(FileReader())
+    sender.send()
 
-sender = TgBotSender(DatabaseReader())
-sender.send()
+    sender = TgBotSender(DatabaseReader())
+    sender.send()

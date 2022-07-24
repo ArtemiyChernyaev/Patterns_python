@@ -12,15 +12,15 @@ class Item(ABC):
 
     @abstractmethod
     def add(self, sub_item: 'Item'):
-        pass
+        ...
 
     @abstractmethod
     def remove(self, sub_item: 'Item'):
-        pass
+        ...
 
     @abstractmethod
     def display(self):
-        pass
+        ...
 
 
 class ClickableItem(Item):
@@ -28,10 +28,10 @@ class ClickableItem(Item):
     def __init__(self, name: str):
         super().__init__(name)
 
-    def add(self, sub_item: 'Item'):
+    def add(self, sub_item: Item):
         raise Exception('You cannot add a sub element to a clickable element')
 
-    def remove(self, sub_item: 'Item'):
+    def remove(self, sub_item: Item):
         raise Exception('A clickable element cannot have sub elements')
 
     def display(self):
@@ -44,11 +44,11 @@ class DropDownItem(Item):
         super().__init__(name)
         self.__children = []
 
-    def add(self, sub_item: 'Item'):
+    def add(self, sub_item: Item):
         sub_item.set_owner(self._item_name)
         self.__children.append(sub_item)
 
-    def remove(self, sub_item: 'Item'):
+    def remove(self, sub_item: Item):
         self.__children.remove(sub_item)
 
     def display(self):
@@ -58,30 +58,31 @@ class DropDownItem(Item):
             item.display()
 
 
-file: 'Item' = DropDownItem('файл->')
+if __name__ == '__main__':
+    file: Item = DropDownItem('файл->')
 
-create: 'Item' = DropDownItem('Создать->')
-open_: 'Item' = DropDownItem('Открыть->')
-exit_: 'Item' = ClickableItem('Выход')
+    create: Item = DropDownItem('Создать->')
+    open_: Item = DropDownItem('Открыть->')
+    exit_: Item = ClickableItem('Выход')
 
-file.add(create)
-file.add(open_)
-file.add(exit_)
+    file.add(create)
+    file.add(open_)
+    file.add(exit_)
 
-project: 'Item' = ClickableItem('Проект...')
-repository: 'Item' = ClickableItem('Репозиторий...')
+    project: Item = ClickableItem('Проект...')
+    repository: Item = ClickableItem('Репозиторий...')
 
-create.add(project)
-create.add(repository)
+    create.add(project)
+    create.add(repository)
 
-solution: 'Item' = ClickableItem('Решение...')
-folder = ClickableItem('Папка...')
+    solution: Item = ClickableItem('Решение...')
+    folder = ClickableItem('Папка...')
 
-open_.add(solution)
-open_.add(folder)
+    open_.add(solution)
+    open_.add(folder)
 
-file.display()
-print()
+    file.display()
+    print()
 
-file.remove(create)
-file.display()
+    file.remove(create)
+    file.display()

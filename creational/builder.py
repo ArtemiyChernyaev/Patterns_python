@@ -7,17 +7,20 @@ PizzaBase = namedtuple('PizzaBase', ['DoughDepth', 'DoughType'])
 
 
 class PizzaDoughDepth(Enum):
+
     THIN = auto()
     THICK = auto()
 
 
 class PizzaDoughType(Enum):
+
     WHEAT = auto()
     CORN = auto()
     RYE = auto()
 
 
 class PizzaSauceType(Enum):
+
     PESTO = auto()
     WHITE_GARLIC = auto()
     BARBEQUE = auto()
@@ -25,6 +28,7 @@ class PizzaSauceType(Enum):
 
 
 class PizzaTopLevelType(Enum):
+
     MOZZARELLA = auto()
     SALAMI = auto()
     BACON = auto()
@@ -54,16 +58,20 @@ class Pizza:
 class Builder(ABC):
 
     @abstractmethod
-    def prepare_dough(self) -> None: pass
+    def prepare_dough(self) -> None:
+        ...
 
     @abstractmethod
-    def add_sauce(self) -> None: pass
+    def add_sauce(self) -> None:
+        ...
 
     @abstractmethod
-    def ass_topping(self) -> None: pass
+    def ass_topping(self) -> None:
+        ...
 
     @abstractmethod
-    def get_pizza(self) -> 'Pizza': pass
+    def get_pizza(self) -> Pizza:
+        ...
 
 
 class MargaritaPizzaBuilder(Builder):
@@ -87,7 +95,7 @@ class MargaritaPizzaBuilder(Builder):
             ]
         )
 
-    def get_pizza(self) -> 'Pizza':
+    def get_pizza(self) -> Pizza:
         return self.pizza
 
 
@@ -111,7 +119,7 @@ class SalamiPizzaBuilder(Builder):
             ]
         )
 
-    def get_pizza(self) -> 'Pizza':
+    def get_pizza(self) -> Pizza:
         return self.pizza
 
 
@@ -120,7 +128,7 @@ class Director:
     def __init__(self):
         self.builder = None
 
-    def set_builder(self, builder: 'Builder'):
+    def set_builder(self, builder: Builder):
         self.builder = builder
 
     def make_pizza(self):
